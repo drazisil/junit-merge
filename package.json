@@ -1,0 +1,54 @@
+{
+  "name": "junit-merge",
+  "version": "0.0.1",
+  "description": "NodeJS CLI for merging JUnit XML test results",
+  "main": "index.js",
+  "bin": "./bin/junit-merge",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "xmldoc": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-junit-reporter": "^1.12.2",
+    "mocha-lcov-reporter": "^1.2.0",
+    "mocha-multi": "^0.10.0",
+    "nyc": "^10.0.0",
+    "standard": "^8.6.0"
+  },
+  "scripts": {
+    "standard": "./node_modules/.bin/standard --verbose",
+    "mocha": "./node_modules/.bin/_mocha -- test/**/*.spec.js",
+    "cov": "nyc --all --reporter=html --reporter=text mocha test/**/*.spec.js --reporter mocha-junit-reporter --reporter spec --reporter mocha-junit-reporter",
+    "test": "npm run standard && npm run mocha && npm run cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drazisil/junit-merge.git"
+  },
+  "keywords": [
+    "junit"
+  ],
+  "author": "Joseph W Becher <jwbecher@drazisil.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/drazisil/junit-merge/issues"
+  },
+  "homepage": "https://github.com/drazisil/junit-merge#readme",
+  "standard": {
+    "globals": [
+      "describe",
+      "it"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "coverage/*"
+    ]
+  }
+}

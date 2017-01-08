@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+var junitMerge = require('../lib/index.js')
+
+jpmReport.checkArgs(process.argv, function cbParseArgs (err, res) {
+  if (err) {
+    console.log(err)
+    process.exit(1)
+  } else {
+    var args = res
+  }
+})
