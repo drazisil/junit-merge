@@ -1,3 +1,8 @@
 machine:
   node:
     version: v6.9.2
+
+test:
+  post:
+    - npm run coverage
+    - mkdir $CIRCLE_TEST_REPORTS/junit && cp test-results.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml

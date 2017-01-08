@@ -26,6 +26,7 @@
     "standard": "./node_modules/.bin/standard --verbose",
     "mocha": "./node_modules/.bin/_mocha -- test/**/*.spec.js",
     "cov": "nyc --all --reporter=html --reporter=text mocha test/**/*.spec.js --reporter mocha-junit-reporter --reporter spec --reporter mocha-junit-reporter",
+    "coverage": "nyc report --all --reporter=text-lcov | coveralls",
     "test": "npm run standard && npm run mocha && npm run cov"
   },
   "repository": {
