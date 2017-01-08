@@ -13,14 +13,11 @@ program
 
 program.parse(process.argv)
 
-console.dir(program)
-
 if (program.dir) {
   useDirectory = true
-  console.log('  using directory')
-  console.log(junitMerge.listFiles(program.dir))
+
+  console.log(junitMerge.mergeFiles(junitMerge.listXmlFiles(program.dir)))
 } else {
-  console.log(' not using directory')
   if (!program.args.length > 0) {
     console.log('ERROR: Missing files to merge...')
     program.help();
