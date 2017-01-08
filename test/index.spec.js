@@ -7,7 +7,6 @@ util.inspect.defaultOptions.depth = null
 describe('File Handling', function () {
   describe('listXmlFiles()', function () {
     it('should return 3 files', function () {
-      console.log('==' + junitMerge.listXmlFiles('test/fixtures'))
       junitMerge.listXmlFiles('test/fixtures').length.should.equal(3)
     })
 

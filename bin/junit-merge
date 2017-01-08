@@ -1,34 +1,28 @@
 #!/usr/bin/env node
-var package = require('../package.json')
-var junitMerge = require('../lib/index.js')
+var packageInfo = require('../package.json')
+var jmerge = require('../lib/index.js')
 var program = require('commander')
 
-var useDirectory = false
-var dirs = []
-
 program
-  .version(package.version)
+  .version(packageInfo.version)
   .option('-d, --dir <path>', 'merge all results in directory')
+    .option('-o, --out <mergedfile>', 'file to output to', './merged-test-results.xml')
   .arguments('<xmlFile1.xml> [xmlFile2.xml..]')
 
 program.parse(process.argv)
 
-if (program.dir) {
-  useDirectory = true
+var mergedXml = ''
 
-  console.log(junitMerge.mergeFiles(junitMerge.listXmlFiles(program.dir)))
+// Was a directory provided?
+if (program.dir) {
+  mergedXml = jmerge.mergeFiles(jmerge.listXmlFiles(program.dir))
 } else {
   if (!program.args.length > 0) {
     console.log('ERROR: Missing files to merge...')
-    program.help();
+    program.help()
   } else {
-    console.log(junitMerge.mergeFiles(program.args))
+    mergedXml = jmerge.mergeFiles(program.args)
   }
 }
 
-//if (!process.argv.slice(2).length) {
-//  console.log('ERROR: Missing files to merge...')
-//  program.help();
-//}
-
-
+jmerge.writeMergedFile(program.out, mergedXml)

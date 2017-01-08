@@ -5,4 +5,5 @@ machine:
 test:
   post:
     - npm run coverage
-    - mkdir $CIRCLE_TEST_REPORTS/junit && cp test-results.xml $CIRCLE_TEST_REPORTS/junit/test-results.xml
+    - bin/junit-merge test-results.xml test/fixtures/3.xml
+    - mkdir $CIRCLE_TEST_REPORTS/junit && cp merged-test-results.xml $CIRCLE_TEST_REPORTS/junit/merged-test-results.xml
