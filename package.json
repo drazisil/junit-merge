@@ -8,6 +8,7 @@
     "test": "test"
   },
   "dependencies": {
+    "commander": "^2.9.0",
     "xmldoc": "^1.0.0"
   },
   "devDependencies": {

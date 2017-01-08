@@ -1,12 +1,37 @@
 #!/usr/bin/env node
-
+var package = require('../package.json')
 var junitMerge = require('../lib/index.js')
+var program = require('commander')
 
-jpmReport.checkArgs(process.argv, function cbParseArgs (err, res) {
-  if (err) {
-    console.log(err)
-    process.exit(1)
+var useDirectory = false
+var dirs = []
+
+program
+  .version(package.version)
+  .option('-d, --dir <path>', 'merge all results in directory')
+  .arguments('<xmlFile1.xml> [xmlFile2.xml..]')
+
+program.parse(process.argv)
+
+console.dir(program)
+
+if (program.dir) {
+  useDirectory = true
+  console.log('  using directory')
+  console.log(junitMerge.listFiles(program.dir))
+} else {
+  console.log(' not using directory')
+  if (!program.args.length > 0) {
+    console.log('ERROR: Missing files to merge...')
+    program.help();
   } else {
-    var args = res
+    console.log(junitMerge.mergeFiles(program.args))
   }
-})
+}
+
+//if (!process.argv.slice(2).length) {
+//  console.log('ERROR: Missing files to merge...')
+//  program.help();
+//}
+
+
