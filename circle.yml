@@ -3,6 +3,8 @@ machine:
     version: v6.9.2
 
 test:
+  pre:
+    - sudo mkdir -p /var/root
   post:
     - npm run coverage
     - bin/junit-merge test-results.xml test/fixtures/3.xml
