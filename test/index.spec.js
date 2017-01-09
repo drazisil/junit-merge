@@ -19,7 +19,7 @@ describe('File Handling', function () {
     it('should report not a valid directory', function () {
       junitMerge.listXmlFiles('bad_dir', function (err, res) {
         if (err) {
-          err.should.equal('Bad directory')
+          err.code.should.equal('ENOENT')
         } else {
           res.should.equal('This should error')
         }
@@ -30,16 +30,6 @@ describe('File Handling', function () {
       junitMerge.listXmlFiles('lib', function (err, res) {
         if (err) {
           err.should.equal('No xml files found')
-        } else {
-          res.should.equal('This should error')
-        }
-      })
-    })
-
-    it('should cause an permission denied error', function () {
-      junitMerge.listXmlFiles('/var/root', function (err, res) {
-        if (err) {
-          err.code.should.equal('EACCES')
         } else {
           res.should.equal('This should error')
         }
@@ -91,16 +81,6 @@ describe('XML Handling', function () {
       junitMerge.getTestsuites('./test/fixtures/12.xml', function (err, res) {
         if (err) {
           err.should.equal('File not found')
-        } else {
-          res.should.equal(null)
-        }
-      })
-    })
-
-    it('should return Bad directory', function () {
-      junitMerge.listXmlFiles('./moo', function (err, res) {
-        if (err) {
-          err.should.equal('Bad directory')
         } else {
           res.should.equal(null)
         }
