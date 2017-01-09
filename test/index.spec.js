@@ -29,7 +29,6 @@ describe('File Handling', function () {
     it('should report not xml files found', function () {
       junitMerge.listXmlFiles('lib', function (err, res) {
         if (err) {
-          console.log(err)
           err.should.equal('No xml files found')
         } else {
           res.should.equal('This should error')
