@@ -11,18 +11,30 @@ program
 
 program.parse(process.argv)
 
-var mergedXml = ''
-
 // Was a directory provided?
 if (program.dir) {
-  mergedXml = jmerge.mergeFiles(jmerge.listXmlFiles(program.dir))
+  jmerge.listXmlFiles(program.dir, function (err, res) {
+    if (err) {
+      console.error('Error: ' + err)
+      process.exit(1)
+    } else {
+      jmerge.mergeFiles(res, cbMergeFiles)
+    }
+  })
 } else {
   if (!program.args.length > 0) {
-    console.log('ERROR: Missing files to merge...')
+    console.error('ERROR: Missing files to merge...')
     program.help()
   } else {
-    mergedXml = jmerge.mergeFiles(program.args)
+    jmerge.mergeFiles(program.args, cbMergeFiles)
   }
 }
 
-jmerge.writeMergedFile(program.out, mergedXml)
+function cbMergeFiles (err, res) {
+  if (err) {
+    console.error('Error: ' + err)
+    process.exit(1)
+  } else {
+    jmerge.writeMergedFile(program.out, res)
+  }
+}
