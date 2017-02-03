@@ -1,8 +1,6 @@
-const util = require('util')
 var junitMerge = require('../lib/index.js')
 var should = require('chai').should() // eslint-disable-line no-unused-vars
-
-util.inspect.defaultOptions.depth = null
+var expect = require('chai').expect // eslint-disable-line no-unused-vars
 
 describe('File Handling', function () {
   describe('listXmlFiles()', function () {
@@ -11,7 +9,7 @@ describe('File Handling', function () {
         if (err) {
           throw err
         } else {
-          res.length.should.equal(4)
+          res.length.should.equal(5)
         }
       })
     })
@@ -36,55 +34,15 @@ describe('File Handling', function () {
       })
     })
   })
-})
 
-describe('XML Handling', function () {
-  describe('getTestsuites()', function () {
-    it('should return 1 testsuites', function () {
-      junitMerge.getTestsuites('./test/fixtures/1.xml', function (err, res) {
-        if (err) {
-          throw err
-        }
-        junitMerge.testsuiteCount.should.equal(1)
-      })
-    })
-
-    it('should return 2 testsuites', function () {
-      junitMerge.getTestsuites('./test/fixtures/3.xml', function (err, res) {
-        if (err) {
-          throw err
-        }
-        junitMerge.testsuiteCount.should.equal(2)
-      })
-    })
-
-    it('should return No tests found', function () {
-      junitMerge.mergeFiles(['./test/fixtures/empty.xml'], function (err, res) {
-        if (err) {
-          err.should.equal('No tests found')
-        } else {
-          res.should.equal('This should error')
-        }
-      })
-    })
-
-    it('should return merged xml file', function () {
-      junitMerge.mergeFiles(['./test/fixtures/1.xml', './test/fixtures/3.xml'], function (err, res) {
-        if (err) {
-          throw err
-        }
-        res.length.should.equal(1077)
-      })
-    })
-
-    it('should return No testsuites found', function () {
-      junitMerge.getTestsuites('./test/fixtures/12.xml', function (err, res) {
-        if (err) {
-          err.should.equal('File not found')
-        } else {
-          res.should.equal(null)
-        }
-      })
+  it('should be able to write a file', function (done) {
+    junitMerge.writeMergedFile('test/moo.txt', 'moo', function (err, res) {
+      if (err) {
+        err.should.equal('This should not error')
+      } else {
+        expect('everything').to.be.ok
+        done()
+      }
     })
   })
 })
