@@ -20,7 +20,7 @@
     "mocha-lcov-reporter": "^1.2.0",
     "mocha-multi": "^0.11.0",
     "nyc": "^10.0.0",
-    "standard": "^8.6.0"
+    "standard": "^10.0.0"
   },
   "scripts": {
     "standard": "./node_modules/.bin/standard --verbose",
