@@ -1,16 +1,58 @@
-<?xml version="1.0"?>
-<testsuites>
-    <testsuite name="PhantomJS 1.9.8" package="" timestamp="2016-01-22T18:25:08" id="0" hostname="MacBook-Pro.local" tests="2" errors="0" failures="1" time="0.026">
-        <properties>
-            <property name="browser.fullName" value="PhantomJS/1.9.8 Safari/534.34"/>
-        </properties>
-        <testcase name="testcase1.1" time="0.003" classname="PhantomJS 1.9.8.add"/>
-        <testcase name="testcase1.2" time="0.001" classname="PhantomJS 1.9.8.FAIL">
-            <failure type="">
-                AssertionError: expected undefined not to be an undefined
-            </failure>
-        </testcase>
-        <system-out><![CDATA[ foo ]]></system-out>
-        <system-err/>
-    </testsuite>
-</testsuites>
+var junitMerge = require('../lib/index.js')
+var should = require('chai').should() // eslint-disable-line no-unused-vars
+var expect = require('chai').expect // eslint-disable-line no-unused-vars
+
+describe('File Handling', function () {
+  describe('listXmlFiles()', function () {
+    it('should return 5 files', function () {
+      junitMerge.listXmlFiles('test/fixtures', false, function (err, res) {
+        if (err) {
+          throw err
+        } else {
+          res.length.should.equal(5)
+        }
+      })
+    })
+
+    it('should return 7 files', function () {
+      junitMerge.listXmlFiles('test/fixtures', true, function (err, res) {
+        if (err) {
+          throw err
+        } else {
+          res.length.should.equal(7)
+        }
+      })
+    })
+
+    it('should report not a valid directory', function () {
+      junitMerge.listXmlFiles('bad_dir', false, function (err, res) {
+        if (err) {
+          err.code.should.equal('ENOENT')
+        } else {
+          res.should.equal('This should error')
+        }
+      })
+    })
+
+    it('should report not xml files found', function () {
+      junitMerge.listXmlFiles('lib', false, function (err, res) {
+        if (err) {
+          err.should.equal('No xml files found')
+        } else {
+          res.should.equal('This should error')
+        }
+      })
+    })
+  })
+
+  it('should be able to write a file', function (done) {
+    junitMerge.writeMergedFile('test/moo.txt', 'moo', function (err, res) {
+      if (err) {
+        err.should.equal('This should not error')
+      } else {
+        expect('everything').to.be.ok
+        done()
+      }
+    })
+  })
+})
