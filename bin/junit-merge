@@ -6,7 +6,7 @@ var program = require('commander')
 program
   .version(packageInfo.version)
   .option('-d, --dir <path>', 'merge all results in directory')
-    .option('-r, --recursive', 'past to recursively merge all results in directory')
+    .option('-r, --recursive', 'pass to recursively merge all results in directory')
       .option('-o, --out <mergedfile>', 'file to output to', './merged-test-results.xml')
   .arguments('<xmlFile1.xml> [xmlFile2.xml..]')
 
