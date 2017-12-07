@@ -6,14 +6,15 @@ var program = require('commander')
 program
   .version(packageInfo.version)
   .option('-d, --dir <path>', 'merge all results in directory')
-    .option('-o, --out <mergedfile>', 'file to output to', './merged-test-results.xml')
+    .option('-r, --recursive', 'past to recursively merge all results in directory')
+      .option('-o, --out <mergedfile>', 'file to output to', './merged-test-results.xml')
   .arguments('<xmlFile1.xml> [xmlFile2.xml..]')
 
 program.parse(process.argv)
 
 // Was a directory provided?
 if (program.dir) {
-  jmerge.listXmlFiles(program.dir, function (err, res) {
+  jmerge.listXmlFiles(program.dir, program.recursive, function (err, res) {
     if (err) {
       console.error('Error: ' + err)
       process.exit(1)
