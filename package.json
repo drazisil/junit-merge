@@ -21,14 +21,19 @@
     "mocha-lcov-reporter": "^1.2.0",
     "mocha-multi": "^0.11.0",
     "nyc": "^11.0.1",
-    "standard": "^8.6.0"
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "prettier": "^1.7.4"
   },
   "scripts": {
-    "standard": "./node_modules/.bin/standard --verbose",
     "mocha": "./node_modules/.bin/_mocha -- test/**/*.spec.js",
     "cov": "nyc --all --reporter=html --reporter=text mocha test/**/*.spec.js --reporter mocha-junit-reporter --reporter spec --reporter mocha-junit-reporter",
     "coverage": "nyc report --all --reporter=text-lcov | coveralls",
-    "test": "npm run standard && npm run mocha && npm run cov"
+    "test": "npm run lint && npm run mocha && npm run cov",
+    "lint": "eslint lib src tests"
   },
   "repository": {
     "type": "git",
@@ -54,5 +59,20 @@
       "coverage/*",
       "test/*"
     ]
+  },
+  "eslintConfig": {
+    "extends": "prettier",
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    }
+  },
+  "prettier": {
+    "trailingComma": "es5"
   }
 }
