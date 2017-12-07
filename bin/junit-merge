@@ -1,41 +1,48 @@
 #!/usr/bin/env node
-var packageInfo = require('../package.json')
-var jmerge = require('../lib/index.js')
-var program = require('commander')
+var packageInfo = require("../package.json");
+var jmerge = require("../lib/index.js");
+var program = require("commander");
 
 program
   .version(packageInfo.version)
-  .option('-d, --dir <path>', 'merge all results in directory')
-    .option('-r, --recursive', 'pass to recursively merge all results in directory')
-      .option('-o, --out <mergedfile>', 'file to output to', './merged-test-results.xml')
-  .arguments('<xmlFile1.xml> [xmlFile2.xml..]')
+  .option("-d, --dir <path>", "merge all results in directory")
+  .option(
+    "-r, --recursive",
+    "pass to recursively merge all results in directory"
+  )
+  .option(
+    "-o, --out <mergedfile>",
+    "file to output to",
+    "./merged-test-results.xml"
+  )
+  .arguments("<xmlFile1.xml> [xmlFile2.xml..]");
 
-program.parse(process.argv)
+program.parse(process.argv);
 
 // Was a directory provided?
 if (program.dir) {
-  jmerge.listXmlFiles(program.dir, program.recursive, function (err, res) {
+  jmerge.listXmlFiles(program.dir, program.recursive, function(err, res) {
     if (err) {
-      console.error('Error: ' + err)
-      process.exit(1)
+      console.error("Error: " + err);
+      process.exit(1);
     } else {
-      jmerge.mergeFiles(res, cbMergeFiles)
+      jmerge.mergeFiles(res, cbMergeFiles);
     }
-  })
+  });
 } else {
   if (!program.args.length > 0) {
-    console.error('ERROR: Missing files to merge...')
-    program.help()
+    console.error("ERROR: Missing files to merge...");
+    program.help();
   } else {
-    jmerge.mergeFiles(program.args, cbMergeFiles)
+    jmerge.mergeFiles(program.args, cbMergeFiles);
   }
 }
 
-function cbMergeFiles (err, res) {
+function cbMergeFiles(err, res) {
   if (err) {
-    console.error('Error: ' + err)
-    process.exit(1)
+    console.error("Error: " + err);
+    process.exit(1);
   } else {
-    jmerge.writeMergedFile(program.out, res)
+    jmerge.writeMergedFile(program.out, res);
   }
 }
