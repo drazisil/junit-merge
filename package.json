@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
+    "fs-readdir-recursive": "^1.1.0",
     "xmldoc": "^1.0.0"
   },
   "devDependencies": {
