@@ -4,8 +4,8 @@ var expect = require('chai').expect // eslint-disable-line no-unused-vars
 
 describe('File Handling', function () {
   describe('listXmlFiles()', function () {
-    it('should return 5 files', function () {
-      junitMerge.listXmlFiles('test/fixtures', false, function (err, res) {
+    it('should return 3 files', function () {
+      junitMerge.listXmlFiles('test/fixtures', function (err, res) {
         if (err) {
           throw err
         } else {
@@ -14,18 +14,8 @@ describe('File Handling', function () {
       })
     })
 
-    it('should return 7 files', function () {
-      junitMerge.listXmlFiles('test/fixtures', true, function (err, res) {
-        if (err) {
-          throw err
-        } else {
-          res.length.should.equal(7)
-        }
-      })
-    })
-
     it('should report not a valid directory', function () {
-      junitMerge.listXmlFiles('bad_dir', false, function (err, res) {
+      junitMerge.listXmlFiles('bad_dir', function (err, res) {
         if (err) {
           err.code.should.equal('ENOENT')
         } else {
@@ -35,7 +25,7 @@ describe('File Handling', function () {
     })
 
     it('should report not xml files found', function () {
-      junitMerge.listXmlFiles('lib', false, function (err, res) {
+      junitMerge.listXmlFiles('lib', function (err, res) {
         if (err) {
           err.should.equal('No xml files found')
         } else {
