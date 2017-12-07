@@ -24,10 +24,6 @@ Or just download the repository and include it in your `node_modules` directly.
     -o, --out <mergedfile>  file to output to
 ```
 
-### Todo
-
-* Move the configs into package.json so it "just works"
-
 ### Contributing
 
 Feel free to submit issues and/or PRs!  In lieu of a formal style guide, 
