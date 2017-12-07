@@ -1,10 +1,12 @@
 # junit-merge
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/drazisil/junit-merge.svg)](https://greenkeeper.io/)
-NodeJS CLI for merging JUnit XML test results
 
 [![CircleCI](https://circleci.com/gh/drazisil/junit-merge.svg?style=shield)](https://circleci.com/gh/drazisil/junit-merge) [![Coverage Status](https://coveralls.io/repos/github/drazisil/junit-merge/badge.svg?branch=master)](https://coveralls.io/github/drazisil/junit-merge?branch=master)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Greenkeeper badge](https://badges.greenkeeper.io/drazisil/junit-merge.svg)](https://greenkeeper.io/)
+
+## NodeJS CLI for merging JUnit XML test results
+
 
 ### Installation
 
