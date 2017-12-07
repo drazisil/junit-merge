@@ -13,10 +13,10 @@
     "xmldoc": "^1.0.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "coveralls": "^2.11.15",
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
+    "mocha": "^4.0.1",
     "mocha-junit-reporter": "^1.12.2",
     "mocha-lcov-reporter": "^1.2.0",
     "mocha-multi": "^0.11.0",
