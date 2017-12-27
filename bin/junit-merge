@@ -43,6 +43,8 @@ function cbMergeFiles(err, res) {
     console.error("Error: " + err);
     process.exit(1);
   } else {
-    jmerge.writeMergedFile(program.out, res);
+    jmerge.writeMergedFile(program.out, res, (res, err) => {
+      return
+    });
   }
 }
