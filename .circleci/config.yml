@@ -17,6 +17,7 @@ jobs:
       - run:
           name: test
           command: |
+            mkdir .nyc_output
             yarn run coverage
             bin/junit-merge test-results.xml test/fixtures/3.xml
             mkdir -p test-results/junit && cp merged-test-results.xml test-results/junit/junit/
