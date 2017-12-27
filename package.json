@@ -20,17 +20,18 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-prettier": "^2.4.0",
     "istanbul": "^0.4.5",
+    "jest": "^22.0.4",
     "mocha": "^4.0.1",
     "mocha-junit-reporter": "^1.15.0",
     "mocha-lcov-reporter": "^1.3.0",
     "mocha-multi": "^0.11.0",
-    "nyc": "^11.4.1",
     "prettier": "^1.9.2"
   },
   "scripts": {
     "mocha": "./node_modules/.bin/_mocha -- test/**/*.spec.js",
     "cov": "nyc --all --reporter=html --reporter=text mocha test/**/*.spec.js --reporter mocha-junit-reporter --reporter spec --reporter mocha-junit-reporter",
-    "test": "npm run lint && npm run mocha && npm run cov",
+    "test2": "npm run lint && npm run mocha && npm run cov",
+    "test": "jest",
     "lint": "eslint lib src tests"
   },
   "repository": {
@@ -51,6 +52,9 @@
       "describe",
       "it"
     ]
+  },
+  "jest": {
+    "collectCoverage": true
   },
   "nyc": {
     "exclude": [
