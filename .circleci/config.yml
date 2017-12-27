@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:6.12.2
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm
+          command: yarn
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: |
+            yarn test
+            mkdir -p test-results/junit
+            bin/junit-merge test-results.xml test/fixtures/3.xml
+            cp test-results.xml test-results/junit/
+      - store_artifacts:
+          path: test-results
+          prefix: tests
+      - store_artifacts:
+          path: merged-test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: test-results
