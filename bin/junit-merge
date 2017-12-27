@@ -21,14 +21,15 @@ program.parse(process.argv);
 
 // Was a directory provided?
 if (program.dir) {
-  jmerge.listXmlFiles(program.dir, program.recursive, function(err, res) {
-    if (err) {
+  jmerge
+    .listXmlFiles(program.dir, program.recursive)
+    .then(res => {
+      merge.mergeFiles(res, cbMergeFiles);
+    })
+    .catch(err => {
       console.error("Error: " + err);
       process.exit(1);
-    } else {
-      jmerge.mergeFiles(res, cbMergeFiles);
-    }
-  });
+    });
 } else {
   if (!program.args.length > 0) {
     console.error("ERROR: Missing files to merge...");
@@ -44,7 +45,7 @@ function cbMergeFiles(err, res) {
     process.exit(1);
   } else {
     jmerge.writeMergedFile(program.out, res, (res, err) => {
-      return
+      return;
     });
   }
 }
