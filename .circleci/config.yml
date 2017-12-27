@@ -19,13 +19,15 @@ jobs:
           command: |
             yarn test
             bin/junit-merge test-results.xml test/fixtures/3.xml
-            mkdir -p test-results/junit && cp merged-test-results.xml test-results/junit/
             cp test-results.xml test-results/junit/
       - store_artifacts:
           path: test-results
           prefix: tests
       - store_artifacts:
+          path: merged-test-results.xml
+          prefix: tests
+      - store_artifacts:
           path: coverage
           prefix: coverage
       - store_test_results:
-          path: test-results.xml
+          path: test-results
