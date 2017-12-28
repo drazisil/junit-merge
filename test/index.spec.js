@@ -28,21 +28,11 @@ it("should report not xml files found", function() {
     .message.should.equal("No xml files found");
 });
 
-it("should be able to write a file", function(done) {
-  junitMerge.writeMergedFile("test/moo.txt", "moo", function(err, res) {
-    if (err) {
-      err.should.equal("This should not error");
-    } else {
-      expect("everything").to.be.ok;
-      done();
-    }
-  });
-});
-
-describe("File Handling - Promises", function() {
-  describe("listXmlFiles()", function() {
-    it("should return 5 files", function() {
-      junitMerge.listXmlFiles("test/fixtures").length.should.equal(5);
-    });
-  });
+it("should be able to write a file", function() {
+  try {
+    junitMerge.writeMergedFile("test/moo.txt", "moo");
+    expect("everything").to.be.ok;
+  } catch (err) {
+    err.should.equal("This should not error");
+  }
 });
