@@ -66,9 +66,9 @@ jobs:
       - store_test_results:
           path: test-results
 
-  workflows:
+workflows:
     version: 2
     one_and_two:
-      jobs:
+        jobs:
         - build_6
         - build_8
