@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build_6:
     docker:
       - image: circleci/node:6.12.2
     steps:
@@ -32,3 +32,43 @@ jobs:
           prefix: coverage
       - store_test_results:
           path: test-results
+
+  build_8:
+    docker:
+      - image: circleci/node:8.9.3
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm
+          command: yarn
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: |
+            yarn test
+            mkdir -p test-results/junit
+            bin/junit-merge junit.xml test/fixtures/3.xml
+            cp junit.xml test-results/junit/
+      - store_artifacts:
+          path: test-results
+          prefix: tests
+      - store_artifacts:
+          path: merged-test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: test-results
+
+  workflows:
+    version: 2
+    one_and_two:
+      jobs:
+        - build_6
+        - build_8
