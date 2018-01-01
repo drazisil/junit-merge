@@ -2,6 +2,10 @@
 
 ## 1.2.0
 
+### 1.2.3
+
+Fixed Issue #27
+
 ### 1.2.2
 
 * Switched to Jest for testing
