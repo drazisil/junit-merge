@@ -103,9 +103,9 @@ workflows:
         - build_6
         - build_8
         - package:
-          #  filters:
-          #    branches:
-          #      only: master
+            filters:
+              branches:
+                only: master
             requires:
               - build_6
               - build_8
