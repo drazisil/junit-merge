@@ -88,8 +88,10 @@ jobs:
       - run:
           name: Package
           command: |
-            echo "Commands here"
-            cat package.json | jq .version
+            set RELEASE_TAG=$(cat package.json | jq .version)
+            echo $RELEASE_TAG
+            pkg . --out-path=releases
+            ./ghr -u drazisil -r junit-merge --replace $RELEASE_TAG pkg
       - store_artifacts:
           path: pkg
           prefix: packages
@@ -101,6 +103,9 @@ workflows:
         - build_6
         - build_8
         - package:
+          #  filters:
+          #    branches:
+          #      only: master
             requires:
               - build_6
               - build_8
