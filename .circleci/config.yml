@@ -88,7 +88,7 @@ jobs:
       - run:
           name: Package
           command: |
-            set RELEASE_TAG=$(cat package.json | jq .version)
+            RELEASE_TAG=$(cat package.json | jq .version)
             echo $RELEASE_TAG
             yarn run pkg
             ./ghr -u drazisil -r junit-merge --replace $RELEASE_TAG pkg
