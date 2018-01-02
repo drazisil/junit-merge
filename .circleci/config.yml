@@ -83,7 +83,7 @@ jobs:
       - run:
           name: Install GHR
           command: |
-            wget https://github.com/tcnksm/ghr/releases/download/v0.4.0/ghr_v0.4.0_linux_amd64.zip
+            wget https://github.com/tcnksm/ghr/releases/download/v0.5.4/ghr_v0.5.4_linux_amd64.zip
             unzip ghr_v0.4.0_linux_amd64.zip
       - run:
           name: Package
