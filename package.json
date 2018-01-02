@@ -31,7 +31,8 @@
     "cov": "nyc --all --reporter=html --reporter=text mocha test/**/*.spec.js --reporter mocha-junit-reporter --reporter spec --reporter mocha-junit-reporter",
     "test2": "npm run lint && npm run mocha && npm run cov",
     "test": "jest",
-    "lint": "eslint lib src tests"
+    "lint": "eslint lib src tests",
+    "pkg": "pkg . --out-path=releases"
   },
   "repository": {
     "type": "git",

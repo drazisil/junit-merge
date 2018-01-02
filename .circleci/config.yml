@@ -90,7 +90,7 @@ jobs:
           command: |
             set RELEASE_TAG=$(cat package.json | jq .version)
             echo $RELEASE_TAG
-            pkg . --out-path=releases
+            yarn run pkg
             ./ghr -u drazisil -r junit-merge --replace $RELEASE_TAG pkg
       - store_artifacts:
           path: pkg
