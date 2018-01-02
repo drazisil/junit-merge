@@ -32,7 +32,7 @@
     "test2": "npm run lint && npm run mocha && npm run cov",
     "test": "jest",
     "lint": "eslint lib src tests",
-    "pkg": "pkg . --out-path=releases"
+    "pkg": "pkg . --out-path=pkg"
   },
   "repository": {
     "type": "git",
