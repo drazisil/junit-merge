@@ -1,26 +1,58 @@
 version: 2
 jobs:
+  build_4:
+    docker:
+      - image: circleci/node:4
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm
+          command: yarn
+      - save_cache:
+          key: v1-dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: |
+            npm run test2
+            mkdir -p test-results/junit
+            bin/junit-merge test-results.xml test/fixtures/3.xml
+            cp test-results.xml test-results/junit/
+      - store_artifacts:
+          path: test-results
+          prefix: tests
+      - store_artifacts:
+          path: merged-test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: test-results
   build_6:
     docker:
       - image: circleci/node:6.12.2
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm
           command: yarn
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
           name: test
           command: |
-            yarn test
+            npm run test2
             mkdir -p test-results/junit
-            bin/junit-merge junit.xml test/fixtures/3.xml
-            cp junit.xml test-results/junit/
+            bin/junit-merge test-results.xml test/fixtures/3.xml
+            cp test-results.xml test-results/junit/
       - store_artifacts:
           path: test-results
           prefix: tests
@@ -39,21 +71,21 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm
           command: yarn
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
           name: test
           command: |
-            yarn test
+            npm run test2
             mkdir -p test-results/junit
-            bin/junit-merge junit.xml test/fixtures/3.xml
-            cp junit.xml test-results/junit/
+            bin/junit-merge test-results.xml test/fixtures/3.xml
+            cp test-results.xml test-results/junit/
       - store_artifacts:
           path: test-results
           prefix: tests
@@ -72,12 +104,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm
           command: yarn
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
@@ -100,6 +132,7 @@ workflows:
     version: 2
     test_deploy:
         jobs:
+        - build_4
         - build_6
         - build_8
         - package:
@@ -108,5 +141,6 @@ workflows:
                 only: master
 
             requires:
+              - build_4
               - build_6
               - build_8

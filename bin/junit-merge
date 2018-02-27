@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+"use strict";
+
 var packageInfo = require("../package.json");
 var jmerge = require("../lib/index.js");
 var program = require("commander");
@@ -22,8 +24,8 @@ program.parse(process.argv);
 // Was a directory provided?
 if (program.dir) {
   try {
-    res = jmerge.listXmlFiles(program.dir, program.recursive);
-    res2 = jmerge.mergeFiles(res);
+    var res = jmerge.listXmlFiles(program.dir, program.recursive);
+    var res2 = jmerge.mergeFiles(res);
     jmerge.writeMergedFile(program.out, res2);
   } catch (err) {
     console.error("Error: " + err);
@@ -34,7 +36,7 @@ if (program.dir) {
     console.error("ERROR: Missing files to merge...");
     program.help();
   } else {
-    res = jmerge.mergeFiles(program.args);
+    var res = jmerge.mergeFiles(program.args);
     jmerge.writeMergedFile(program.out, res);
   }
 }

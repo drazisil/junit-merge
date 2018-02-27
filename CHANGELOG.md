@@ -2,6 +2,10 @@
 
 ## 1.2.0
 
+### 1.2.4
+
+Added support for NodeJS 4 (PR #33) Thanks to @DanielMSchmidt
+
 ### 1.2.3
 
 Fixed Issue #27

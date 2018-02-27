@@ -1,6 +1,6 @@
 {
   "name": "junit-merge",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "NodeJS CLI for merging JUnit XML test results",
   "main": "index.js",
   "bin": "./bin/junit-merge",
@@ -20,9 +20,10 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-prettier": "^2.4.0",
     "istanbul": "^0.4.5",
-    "jest": "^22.0.4",
-    "jest-junit": "^3.4.1",
+    "mocha": "^5.0.1",
+    "mocha-junit-reporter": "^1.17.0",
     "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^11.4.1",
     "pkg": "^4.3.0-beta.5",
     "prettier": "^1.9.2"
   },
