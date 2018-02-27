@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+"use strict";
+
 var packageInfo = require("../package.json");
 var jmerge = require("../lib/index.js");
 var program = require("commander");
