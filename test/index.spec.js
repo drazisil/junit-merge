@@ -1,3 +1,5 @@
+"use strict";
+
 var junitMerge = require("../lib/index.js");
 var should = require("chai").should(); // eslint-disable-line no-unused-vars
 var expect = require("chai").expect; // eslint-disable-line no-unused-vars
