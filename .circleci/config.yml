@@ -52,7 +52,7 @@ jobs:
             npm run test2
             mkdir -p test-results/junit
             bin/junit-merge test-results.xml test/fixtures/3.xml
-            cp junit.xml test-results/junit/
+            cp test-results.xml test-results/junit/
       - store_artifacts:
           path: test-results
           prefix: tests
@@ -85,7 +85,7 @@ jobs:
             npm run test2
             mkdir -p test-results/junit
             bin/junit-merge test-results.xml test/fixtures/3.xml
-            cp junit.xml test-results/junit/
+            cp test-results.xml test-results/junit/
       - store_artifacts:
           path: test-results
           prefix: tests
