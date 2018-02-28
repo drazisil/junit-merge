@@ -17,15 +17,17 @@ Or just download the repository and include it in your `node_modules` directly.
 ### Usage
 
  ```
-  Usage: junit-merge [options] <xmlFile1.xml> [xmlFile2.xml..]
+ Usage: junit-merge [options] <xmlFile1.xml> [xmlFile2.xml..]
+
 
   Options:
 
-    -h, --help              output usage information
     -V, --version           output the version number
     -d, --dir <path>        merge all results in directory
+    -C, --createDir         create the output directory if missing
     -r, --recursive         pass to recursively merge all results in directory
-    -o, --out <mergedfile>  file to output to
+    -o, --out <mergedfile>  file to output to (default: ./merged-test-results.xml)
+    -h, --help              output usage information
 ```
 
 ### Contributing

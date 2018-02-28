@@ -1,6 +1,12 @@
 # Changelog
 
-## 1.2.0
+## 1.3
+
+### 1.3.0
+
+Added flag for creating missing output directories (#35)
+
+## 1.2
 
 ### 1.2.4
 
