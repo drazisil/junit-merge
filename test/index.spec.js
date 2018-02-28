@@ -40,10 +40,9 @@ describe("File Handling", function() {
 
   it("should not be able to write a file if the output dir does not exist", function() {
     try {
-      junitMerge.writeMergedFile("goats/moo.txt", "moo");
-      expect("everything").to.be.ok;
+      junitMerge.writeMergedFile("spacegoats/moo.txt", "moo");
     } catch (err) {
-      err.should.equal("This should not error");
+      err.message.should.equal("Missing output directory");
     }
   });
 
