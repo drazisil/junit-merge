@@ -8,6 +8,7 @@ var program = require("commander");
 program
   .version(packageInfo.version)
   .option("-d, --dir <path>", "merge all results in directory")
+  .option("-C, --createDir", "create the output directory if missing")
   .option(
     "-r, --recursive",
     "pass to recursively merge all results in directory"
@@ -26,8 +27,14 @@ if (program.dir) {
   try {
     var res = jmerge.listXmlFiles(program.dir, program.recursive);
     var res2 = jmerge.mergeFiles(res);
-    jmerge.writeMergedFile(program.out, res2);
+    jmerge.writeMergedFile(program.out, res2, program.createDir);
   } catch (err) {
+    if (err.message == "Missing output directory") {
+      console.error(
+        "ERROR: Missing output directory, use --createDir=true to create it."
+      );
+      process.exit();
+    }
     console.error("Error: " + err);
     process.exit(1);
   }
@@ -37,6 +44,14 @@ if (program.dir) {
     program.help();
   } else {
     var res = jmerge.mergeFiles(program.args);
-    jmerge.writeMergedFile(program.out, res);
+    try {
+      jmerge.writeMergedFile(program.out, res, program.createDir);
+    } catch (error) {
+      if (error.message == "Missing output directory") {
+        console.error(
+          "ERROR: Missing output directory, use --createDir to create it."
+        );
+      }
+    }
   }
 }
