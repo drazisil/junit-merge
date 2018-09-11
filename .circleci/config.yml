@@ -1,146 +1,184 @@
 version: 2
 jobs:
-  build_4:
-    docker:
-      - image: circleci/node:4
-    steps:
-      - checkout
-      - restore_cache:
-          key: v1-dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm
-          command: yarn
-      - save_cache:
-          key: v1-dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: test
-          command: |
-            npm run test2
-            mkdir -p test-results/junit
-            bin/junit-merge test-results.xml test/fixtures/3.xml
-            cp test-results.xml test-results/junit/
-      - store_artifacts:
-          path: test-results
-          prefix: tests
-      - store_artifacts:
-          path: merged-test-results.xml
-          prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
-      - store_test_results:
-          path: test-results
-  build_6:
-    docker:
-      - image: circleci/node:6.12.2
-    steps:
-      - checkout
-      - restore_cache:
-          key: v1-dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm
-          command: yarn
-      - save_cache:
-          key: v1-dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: test
-          command: |
-            npm run test2
-            mkdir -p test-results/junit
-            bin/junit-merge test-results.xml test/fixtures/3.xml
-            cp test-results.xml test-results/junit/
-      - store_artifacts:
-          path: test-results
-          prefix: tests
-      - store_artifacts:
-          path: merged-test-results.xml
-          prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
-      - store_test_results:
-          path: test-results
+    build_5:
+        docker:
+            -
+                image: 'circleci/node:6'
+        steps:
+            - checkout
+            -
+                restore_cache:
+                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
+            -
+                run:
+                    name: install-npm
+                    command: yarn
+            -
+                save_cache:
+                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
+                    paths:
+                        - ./node_modules
+            -
+                run:
+                    name: test
+                    command: |
+                        npm run test2
+                        mkdir -p test-results/junit
+                        bin/junit-merge test-results.xml test/fixtures/3.xml
+                        cp test-results.xml test-results/junit/
+            -
+                store_artifacts:
+                    path: test-results
+                    destination: tests
+            -
+                store_artifacts:
+                    path: merged-test-results.xml
+                    destination: tests
+            -
+                store_artifacts:
+                    path: coverage
+                    destination: coverage
+            -
+                store_test_results:
+                    path: test-results
+    build_8:
+        docker:
+            -
+                image: 'circleci/node:8'
+        steps:
+            - checkout
+            -
+                restore_cache:
+                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
+            -
+                run:
+                    name: install-npm
+                    command: yarn
+            -
+                save_cache:
+                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
+                    paths:
+                        - ./node_modules
+            -
+                run:
+                    name: test
+                    command: |
+                        npm run test2
+                        mkdir -p test-results/junit
+                        bin/junit-merge test-results.xml test/fixtures/3.xml
+                        cp test-results.xml test-results/junit/
+            -
+                store_artifacts:
+                    path: test-results
+                    destination: tests
+            -
+                store_artifacts:
+                    path: merged-test-results.xml
+                    destination: tests
+            -
+                store_artifacts:
+                    path: coverage
+                    destination: coverage
+            -
+                store_test_results:
+                    path: test-results
+    build_10:
+        docker:
+            -
+                image: 'circleci/node:10'
+        steps:
+            - checkout
+            -
+                restore_cache:
+                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
+            -
+                run:
+                    name: install-npm
+                    command: yarn
+            -
+                save_cache:
+                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
+                    paths:
+                        - ./node_modules
+            -
+                run:
+                    name: test
+                    command: |
+                        npm run test2
+                        mkdir -p test-results/junit
+                        bin/junit-merge test-results.xml test/fixtures/3.xml
+                        cp test-results.xml test-results/junit/
+            -
+                store_artifacts:
+                    path: test-results
+                    destination: tests
+            -
+                store_artifacts:
+                    path: merged-test-results.xml
+                    destination: tests
+            -
+                store_artifacts:
+                    path: coverage
+                    destination: coverage
+            -
+                store_test_results:
+                    path: test-results
+    package:
+        docker:
+            -
+                image: 'circleci/node:8'
+        steps:
+            - checkout
+            -
+                restore_cache:
+                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
+            -
+                run:
+                    name: install-npm
+                    command: yarn
+            -
+                save_cache:
+                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
+                    paths:
+                        - ./node_modules
+            -
+                run:
+                    name: Install GHR
+                    command: >
+                        wget
+                        https://github.com/tcnksm/ghr/releases/download/v0.5.4/ghr_v0.5.4_linux_amd64.zip
 
-  build_8:
-    docker:
-      - image: circleci/node:8.9.3
-    steps:
-      - checkout
-      - restore_cache:
-          key: v1-dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm
-          command: yarn
-      - save_cache:
-          key: v1-dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: test
-          command: |
-            npm run test2
-            mkdir -p test-results/junit
-            bin/junit-merge test-results.xml test/fixtures/3.xml
-            cp test-results.xml test-results/junit/
-      - store_artifacts:
-          path: test-results
-          prefix: tests
-      - store_artifacts:
-          path: merged-test-results.xml
-          prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
-      - store_test_results:
-          path: test-results
+                        unzip ghr_v0.5.4_linux_amd64.zip
+            -
+                run:
+                    name: Package
+                    command: >
+                        RELEASE_TAG=v$(cat package.json | jq --raw-output
+                        .version)
 
-  package:
-    docker:
-      - image: circleci/node:8.9.3
-    steps:
-      - checkout
-      - restore_cache:
-          key: v1-dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm
-          command: yarn
-      - save_cache:
-          key: v1-dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Install GHR
-          command: |
-            wget https://github.com/tcnksm/ghr/releases/download/v0.5.4/ghr_v0.5.4_linux_amd64.zip
-            unzip ghr_v0.5.4_linux_amd64.zip
-      - run:
-          name: Package
-          command: |
-            RELEASE_TAG=v$(cat package.json | jq --raw-output .version)
-            echo $RELEASE_TAG
-            yarn run pkg
-            ./ghr -u drazisil -r junit-merge --replace $RELEASE_TAG pkg
-      - store_artifacts:
-          path: pkg
-          prefix: packages
+                        echo $RELEASE_TAG
 
+                        yarn run pkg
+
+                        ./ghr -u drazisil -r junit-merge --replace $RELEASE_TAG
+                        pkg
+            -
+                store_artifacts:
+                    path: pkg
+                    destination: packages
 workflows:
     version: 2
     test_deploy:
         jobs:
-        - build_4
-        - build_6
-        - build_8
-        - package:
-            filters:
-              branches:
-                only: master
-
-            requires:
-              - build_4
-              - build_6
-              - build_8
+            - build_6
+            - build_8
+            - build_10
+            -
+                package:
+                    filters:
+                        branches:
+                            only: master
+                    requires:
+                        - build_6
+                        - build_8
+                        - build_10

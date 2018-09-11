@@ -7,6 +7,8 @@
 
 ## NodeJS CLI for merging JUnit XML test results
 
+This version works with Node 6, Node 8, and Node 10. It drops support for Node 4
+
 
 ### Installation
 
