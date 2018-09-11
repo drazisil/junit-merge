@@ -15,32 +15,33 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.14.0",
+    "eslint": "^5.5.0",
     "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-config-prettier": "^2.7.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^2.6.2",
     "istanbul": "^0.4.5",
-    "mocha": "^5.0.1",
-    "mocha-junit-reporter": "^1.17.0",
+    "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.18.0",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^11.9.0",
+    "nyc": "^13.0.1",
     "pkg": "^4.3.4",
     "prettier": "^1.9.2"
   },
   "scripts": {
     "mocha": "./node_modules/.bin/_mocha -- test/**/*.spec.js",
-    "cov":
-      "nyc --all --reporter=html --reporter=text mocha test/**/*.spec.js --reporter mocha-junit-reporter --reporter spec --reporter mocha-junit-reporter",
+    "cov": "nyc --all --reporter=html --reporter=text mocha test/**/*.spec.js --reporter mocha-junit-reporter --reporter spec --reporter mocha-junit-reporter",
     "test": "npm run lint && npm run mocha && npm run cov",
-    "lint": "eslint lib src tests",
+    "lint": "eslint lib test",
     "pkg": "pkg . --out-path=pkg"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/drazisil/junit-merge.git"
   },
-  "keywords": ["junit"],
+  "keywords": [
+    "junit"
+  ],
   "author": "Joseph W Becher <jwbecher@drazisil.com>",
   "license": "Apache-2.0",
   "bugs": {
@@ -48,21 +49,29 @@
   },
   "homepage": "https://github.com/drazisil/junit-merge#readme",
   "standard": {
-    "globals": ["describe", "it"]
+    "globals": [
+      "describe",
+      "it"
+    ]
   },
   "jest": {
     "collectCoverage": true,
     "testResultsProcessor": "jest-junit"
   },
   "nyc": {
-    "exclude": ["coverage/*", "test/*"]
+    "exclude": [
+      "coverage/*",
+      "test/*"
+    ]
   },
   "eslintConfig": {
     "extends": "prettier",
     "parserOptions": {
       "ecmaVersion": 6
     },
-    "plugins": ["prettier"],
+    "plugins": [
+      "prettier"
+    ],
     "rules": {
       "prettier/prettier": "error"
     }
