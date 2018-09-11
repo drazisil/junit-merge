@@ -63,7 +63,7 @@ jobs:
                 run:
                     name: test
                     command: |
-                        npm run test2
+                        npm run test
                         mkdir -p test-results/junit
                         bin/junit-merge test-results.xml test/fixtures/3.xml
                         cp test-results.xml test-results/junit/
@@ -104,7 +104,7 @@ jobs:
                 run:
                     name: test
                     command: |
-                        npm run test2
+                        npm run test
                         mkdir -p test-results/junit
                         bin/junit-merge test-results.xml test/fixtures/3.xml
                         cp test-results.xml test-results/junit/
