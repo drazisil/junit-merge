@@ -16,7 +16,7 @@ jobs:
             -
                 run:
                     name: test echo 
-                    command: echo $GITHUB_TOKEN       
+                    command: echo "Your token is $GITHUB_TOKEN"       
                     
             -
                 save_cache:
