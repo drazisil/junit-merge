@@ -14,6 +14,11 @@ jobs:
                     name: install-npm
                     command: yarn
             -
+                run:
+                    name: test echo 
+                    command: echo $GITHUB_TOKEN       
+                    
+            -
                 save_cache:
                     key: 'v1-dependency-cache-{{ checksum "package.json" }}'
                     paths:
