@@ -1,0 +1,16 @@
+<testsuite name="Mocha Tests" tests="14" failures="0" errors="0" skipped="0" timestamp="Fri, 03 May 2019 15:30:37 GMT" time="0.022">
+<testcase classname="File Handling" name="should return 7 files" time="0.002"/>
+<testcase classname="File Handling" name="should report not a valid directory" time="0"/>
+<testcase classname="File Handling" name="should report not xml files found" time="0.001"/>
+<testcase classname="File Handling" name="should be able to write a file" time="0"/>
+<testcase classname="File Handling" name="should not be able to write a file if the output dir does not exist" time="0"/>
+<testcase classname="File Handling" name="should be able to write a file if the output dir does not exist and createDir is true" time="0"/>
+<testcase classname="File Handling listXmlFiles()" name="should return 5 files" time="0"/>
+<testcase classname="XML Handling getTestsuites()" name="should return a testsuite" time="0.003"/>
+<testcase classname="XML Handling getTestsuites()" name="should return 1 testsuites" time="0.001"/>
+<testcase classname="XML Handling getTestsuites()" name="should return 1 testsuite" time="0"/>
+<testcase classname="XML Handling getTestsuites()" name="should return 2 testsuites" time="0.001"/>
+<testcase classname="XML Handling getTestsuites()" name="should return No testsuites found" time="0"/>
+<testcase classname="File Handling mergeFiles()" name="should return No tests found" time="0"/>
+<testcase classname="File Handling mergeFiles()" name="should return merged xml file" time="0.001"/>
+</testsuite>
