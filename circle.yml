@@ -1,9 +1,0 @@
-machine:
-  node:
-    version: v6.9.2
-
-test:
-  post:
-    - npm run coverage
-    - bin/junit-merge test-results.xml test/fixtures/3.xml
-    - mkdir $CIRCLE_TEST_REPORTS/junit && cp merged-test-results.xml $CIRCLE_TEST_REPORTS/junit/merged-test-results.xml
