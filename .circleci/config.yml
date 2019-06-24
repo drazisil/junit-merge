@@ -1,46 +1,5 @@
 version: 2
 jobs:
-    build_6:
-        docker:
-            -
-                image: 'circleci/node:6'
-        steps:
-            - checkout
-            -
-                restore_cache:
-                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
-            -
-                run:
-                    name: install-npm
-                    command: yarn
-            -
-                save_cache:
-                    key: 'v1-dependency-cache-{{ checksum "package.json" }}'
-                    paths:
-                        - ./node_modules
-            -
-                run:
-                    name: test
-                    command: |
-                        npm run test
-                        mkdir -p test-results/junit
-                        bin/junit-merge test-results.xml test/fixtures/3.xml
-                        cp test-results.xml test-results/junit/
-            -
-                store_artifacts:
-                    path: test-results
-                    destination: tests
-            -
-                store_artifacts:
-                    path: merged-test-results.xml
-                    destination: tests
-            -
-                store_artifacts:
-                    path: coverage
-                    destination: coverage
-            -
-                store_test_results:
-                    path: test-results
     build_8:
         docker:
             -
@@ -170,7 +129,6 @@ workflows:
     version: 2
     test_deploy:
         jobs:
-            - build_6
             - build_8
             - build_10
             -
@@ -179,6 +137,5 @@ workflows:
                         branches:
                             only: master
                     requires:
-                        - build_6
                         - build_8
                         - build_10
