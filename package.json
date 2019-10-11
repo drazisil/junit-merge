@@ -30,7 +30,7 @@
   },
   "scripts": {
     "mocha": "./node_modules/.bin/_mocha -- test/**/*.spec.js",
-    "cov": "nyc --all --reporter=xml --reporter=html --reporter=text mocha test/**/*.spec.js --reporter-options configFile=config.json",
+    "cov": "nyc --all --reporter=cobertura --reporter=html --reporter=text mocha test/**/*.spec.js --reporter-options configFile=config.json",
     "test": "npm run lint && npm run mocha && npm run cov",
     "lint": "eslint lib test",
     "pkg": "pkg . --out-path=pkg"
