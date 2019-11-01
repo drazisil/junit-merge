@@ -8,7 +8,7 @@
     "test": "test"
   },
   "dependencies": {
-    "commander": "^3.0.0",
+    "commander": "^4.0.0",
     "fs-readdir-recursive": "^1.1.0",
     "mkdirp": "^0.5.1",
     "xmldoc": "^1.1.2"
